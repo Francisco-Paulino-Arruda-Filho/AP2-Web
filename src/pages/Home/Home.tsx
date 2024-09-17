@@ -14,16 +14,21 @@ interface Aluno {
 }
 
 // O estado agora usa um objeto cujas chaves são strings (os IDs)
-const Home: React.FC = () => {
+const Home = () => {
     const [data, setData] = useState<{ [key: string]: Aluno }>({});
-    console.log(data);
 
     useEffect(() => {
-        
+        fetch('http://localhost:3000/aluno', { method: "GET" }).
+            then(response => { console.log(response); return response.json() }).
+            then(data => {
+                console.log(data)
+                setData(data)
+            }
+            ).catch((error) => { console.error(error) })
     }, []);
 
     const onDelete = (id: string) => {
-        
+
     };
 
     return (
