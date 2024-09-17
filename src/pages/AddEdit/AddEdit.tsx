@@ -24,9 +24,7 @@ const AddEdit = () => {
     const { nome, curso, ira } = state;
 
     useEffect(() => {
-        fetch(`http://localhost:3000/aluno?${new URLSearchParams({
-            id: id || ""
-        })}`)
+        fetch(`http://localhost:3000/aluno/${id ? id : ""}`)
             .then((response) => {
                 return response.json();
             })
@@ -52,7 +50,7 @@ const AddEdit = () => {
             setState(initialState);
         }
     }, [id, data]);
-    
+
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -79,12 +77,12 @@ const AddEdit = () => {
                 toast.error("Erro ao salvar os dados");
             }
         })
-        .catch((err) => {
-            toast.error("Erro ao salvar os dados");
-            console.error(err);
-        });
+            .catch((err) => {
+                toast.error("Erro ao salvar os dados");
+                console.error(err);
+            });
     };
-    
+
 
     return (
         <>
@@ -92,37 +90,37 @@ const AddEdit = () => {
                 <form onSubmit={handleSubmit} className="w-80 mx-auto form-custom">
                     <div className="form-group mb-3">
                         <label htmlFor='nome'>Nome</label>
-                        <input 
-                            type='text' 
-                            id='nome' 
-                            name='nome' 
+                        <input
+                            type='text'
+                            id='nome'
+                            name='nome'
                             value={nome}
                             onChange={handleInputChange}
-                            placeholder='Nome' 
+                            placeholder='Nome'
                             className="form-control form-control-lg w-100"
                         />
                     </div>
                     <div className="form-group mb-3">
                         <label htmlFor='curso'>Curso</label>
-                        <input 
-                            type='text' 
-                            id='curso' 
+                        <input
+                            type='text'
+                            id='curso'
                             name='curso'
                             value={curso}
                             onChange={handleInputChange}
-                            placeholder='Curso' 
+                            placeholder='Curso'
                             className="form-control form-control-lg w-100"
                         />
                     </div>
                     <div className="form-group mb-3">
                         <label htmlFor='ira'>IRA</label>
-                        <input 
-                            type='number' 
-                            id='ira' 
+                        <input
+                            type='number'
+                            id='ira'
                             name='ira'
                             value={ira}
                             onChange={handleInputChange}
-                            placeholder='IRA' 
+                            placeholder='IRA'
                             className="form-control form-control-lg w-100"
                         />
                     </div>

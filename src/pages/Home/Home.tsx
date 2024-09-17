@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 
 // Defina a tipagem dos dados dos contatos
 interface Aluno {
+    _id: string,
     nome: string;
     curso: string;
     ira: number;
@@ -15,7 +16,7 @@ interface Aluno {
 
 // O estado agora usa um objeto cujas chaves são strings (os IDs)
 const Home = () => {
-    const [data, setData] = useState<{ [key: string]: Aluno }>({});
+    const [data, setData] = useState<Aluno[]>([]);
 
     useEffect(() => {
         fetch('http://localhost:3000/aluno', { method: "GET" }).
@@ -28,14 +29,17 @@ const Home = () => {
     }, []);
 
     const onDelete = (id: string) => {
-
+        fetch(`http://localhost:3000/aluno/find/${id}`, { method: "DELETE" }).then(
+            () => {
+                setData(data.filter((val) => val._id != id))
+            }
+        )
     };
 
-    const calculaMedia = () => {    
+    const calculaMedia = () => {
         let soma = 0;
         let quantidade = 0;
-        Object.keys(data).forEach((id) => {
-            const aluno = data[id];
+        data.forEach((aluno) => {
             soma += aluno.ira;
             quantidade++;
         });
@@ -55,11 +59,10 @@ const Home = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {Object.keys(data).map((id) => {
-                        const aluno = data[id]; // Pegue o contato relacionado ao ID
+                    {data.map((aluno) => {
                         console.log(aluno)
                         return (
-                            <tr key={id}
+                            <tr key={aluno._id}
                             >
                                 <td
                                     className={Number(aluno.ira) >= 7 ? "high-ira" : "flow-ira"}
@@ -75,16 +78,16 @@ const Home = () => {
                                 >
                                     <button
                                         className="btn btn-danger"
-                                        onClick={() => onDelete(id)}
+                                        onClick={() => onDelete(aluno._id)}
                                     >
                                         Deletar
                                     </button>
-                                    <Link to={`/update/${id}`}>
+                                    <Link to={`/update/${aluno._id}`}>
                                         <button className='btn btn-success'>
                                             Editar
                                         </button>
                                     </Link>
-                                    <Link to={`/view/${id}`}>
+                                    <Link to={`/view/${aluno._id}`}>
                                         <button className='btn btn-info'>
                                             Visualizar
                                         </button>
