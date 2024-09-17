@@ -31,6 +31,17 @@ const Home = () => {
 
     };
 
+    const calculaMedia = () => {    
+        let soma = 0;
+        let quantidade = 0;
+        Object.keys(data).forEach((id) => {
+            const aluno = data[id];
+            soma += aluno.ira;
+            quantidade++;
+        });
+        return quantidade > 0 ? (soma / quantidade).toFixed(2) : "0";
+    }
+
     return (
         <div className='container mt-5'>
             <h2 className="mb-4">Lista de Contatos</h2>
@@ -46,12 +57,22 @@ const Home = () => {
                 <tbody>
                     {Object.keys(data).map((id) => {
                         const aluno = data[id]; // Pegue o contato relacionado ao ID
+                        console.log(aluno)
                         return (
-                            <tr key={id}>
-                                <td>{aluno?.nome || "Sem nome"}</td>
-                                <td>{aluno?.curso || "Sem curso"}</td>
-                                <td>{aluno?.ira || "Sem IRA"}</td>
-                                <td>
+                            <tr key={id}
+                            >
+                                <td
+                                    className={Number(aluno.ira) >= 7 ? "high-ira" : "flow-ira"}
+                                >{aluno?.nome || "Sem nome"}</td>
+                                <td
+                                    className={Number(aluno.ira) >= 7 ? "high-ira" : "flow-ira"}
+                                >{aluno?.curso || "Sem curso"}</td>
+                                <td
+                                    className={Number(aluno.ira) >= 7 ? "high-ira" : "flow-ira"}
+                                >{aluno?.ira || "Sem IRA"}</td>
+                                <td
+                                    className={Number(aluno.ira) >= 7 ? "high-ira" : "flow-ira"}
+                                >
                                     <button
                                         className="btn btn-danger"
                                         onClick={() => onDelete(id)}
@@ -72,6 +93,10 @@ const Home = () => {
                             </tr>
                         );
                     })}
+                    <tr className="bg-light">
+                        <td colSpan={3} className="text-center"><strong>Média das Notas</strong></td>
+                        <td className="text-center"><strong>{calculaMedia()}</strong></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
