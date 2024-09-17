@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import app from '../../config/Firebase';
 import { toast } from 'react-toastify';
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.bundle.min";
@@ -7,25 +6,40 @@ import './styles.css';
 import { useParams, useNavigate } from 'react-router-dom'
 
 interface Aluno {
-    name: string;
+    nome: string;
     curso: string;
-    IRA: number;
+    ira: number;
 }
 
 const AddEdit = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const initialState = {
-        name: "",
+        nome: "",
         curso: "",
-        IRA: 7.0,
+        ira: 7.0,
     } as Aluno;
     const [state, setState] = useState(initialState)
     const [data, setData] = useState<{ [key: string]: Aluno }>({});
-    const { name, curso, IRA } = state;
+    const { nome, curso, ira } = state;
 
     useEffect(() => {
-        
+        fetch(`http://localhost:3000/aluno?${new URLSearchParams({
+            id: id || ""
+        })}`)
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                if (!data) {
+                    return;
+                }
+                setData(data);
+            })
+            .catch((err) => {
+                toast.error("Erro ao carregar os dados");
+                console.error(err);
+            });
     }, [id]);
 
     useEffect(() => {
@@ -50,27 +64,46 @@ const AddEdit = () => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
+        fetch(`http://localhost:3000/aluno/` + (id || ""), {
+            method: id ? "PUT" : "POST",
+            headers: {
+                'Content-Type': 'application/json' // Adiciona o cabeçalho correto
+            },
+            body: JSON.stringify(state) // Certifica-se de enviar o corpo como JSON
+        }).then((response) => {
+            console.log(response);
+            if (response.ok) {
+                toast.success(`Aluno ${id ? "atualizado" : "adicionado"} com sucesso`);
+                navigate('/');
+            } else {
+                toast.error("Erro ao salvar os dados");
+            }
+        })
+        .catch((err) => {
+            toast.error("Erro ao salvar os dados");
+            console.error(err);
+        });
     };
+    
 
     return (
         <>
             <div className='container mt-5'>
                 <form onSubmit={handleSubmit} className="w-80 mx-auto form-custom">
                     <div className="form-group mb-3">
-                        <label htmlFor='name'>Nome</label>
+                        <label htmlFor='nome'>Nome</label>
                         <input 
                             type='text' 
-                            id='name' 
-                            name='name' 
-                            value={name}
+                            id='nome' 
+                            name='nome' 
+                            value={nome}
                             onChange={handleInputChange}
                             placeholder='Nome' 
                             className="form-control form-control-lg w-100"
                         />
                     </div>
                     <div className="form-group mb-3">
-                        <label htmlFor='email'>E-mail</label>
+                        <label htmlFor='curso'>Curso</label>
                         <input 
                             type='text' 
                             id='curso' 
@@ -82,12 +115,12 @@ const AddEdit = () => {
                         />
                     </div>
                     <div className="form-group mb-3">
-                        <label htmlFor='IRA'>IRA</label>
+                        <label htmlFor='ira'>IRA</label>
                         <input 
                             type='number' 
-                            id='IRA' 
-                            name='IRA'
-                            value={IRA}
+                            id='ira' 
+                            name='ira'
+                            value={ira}
                             onChange={handleInputChange}
                             placeholder='IRA' 
                             className="form-control form-control-lg w-100"
