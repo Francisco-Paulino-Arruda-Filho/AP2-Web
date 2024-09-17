@@ -7,20 +7,11 @@
     width: 100%;
 }
 
-.styled-table thead th { /* Use th ao invés de td */
+.styled-table thead th {
+    /* Use th ao invés de td */
     background-color: #9466ff;
-    color: #fff;
     text-align: left;
     padding: 12px 15px;
-}
-
-.styled-table tbody tr {
-    border-bottom: 1px solid #dddddd;
-    background-color: #f3f3f3;
-}
-
-.styled-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3; /* Cor alternada para linhas pares */
 }
 
 .styled-table tbody tr:last-of-type {

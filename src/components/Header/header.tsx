@@ -15,6 +15,8 @@ const Header = () => {
             setActiveTab("Add");
         } else if (location.pathname === "/aluno") {
             setActiveTab("aluno");
+        } else if (location.pathname === "/cursos") {
+            setActiveTab("cursos")
         }
     }, [location]);
 
@@ -52,6 +54,15 @@ const Header = () => {
                                     onClick={() => setActiveTab("Add")}
                                 >
                                     Add
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    className={`dropdown-item ${activeTab === 'cursos' ? 'active' : ''}`}
+                                    to="/cursos"
+                                    onClick={() => setActiveTab("cursos")}
+                                >
+                                    Cursos
                                 </Link>
                             </li>
                         </ul>
