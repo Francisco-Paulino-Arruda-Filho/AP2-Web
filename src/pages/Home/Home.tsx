@@ -8,9 +8,9 @@ import { Link } from 'react-router-dom';
 
 // Defina a tipagem dos dados dos contatos
 interface Aluno {
-    name: string;
+    nome: string;
     curso: string;
-    IRA: number;
+    ira: number;
 }
 
 // O estado agora usa um objeto cujas chaves são strings (os IDs)
@@ -48,9 +48,9 @@ const Home = () => {
                         const aluno = data[id]; // Pegue o contato relacionado ao ID
                         return (
                             <tr key={id}>
-                                <td>{aluno?.name || "Sem nome"}</td>
+                                <td>{aluno?.nome || "Sem nome"}</td>
                                 <td>{aluno?.curso || "Sem curso"}</td>
-                                <td>{aluno?.IRA || "Sem IRA"}</td>
+                                <td>{aluno?.ira || "Sem IRA"}</td>
                                 <td>
                                     <button
                                         className="btn btn-danger"
