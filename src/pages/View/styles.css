@@ -1,0 +1,42 @@
+/* Melhoria na estilização da classe .header */
+.header {
+    background-color: #9466ff; /* Cor de fundo roxa */
+    color: #ffffff; /* Texto branco */
+    padding: 10px 15px; /* Espaçamento interno */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 1.25rem; /* Tamanho da fonte */
+    font-weight: bold; /* Fonte em negrito */
+    text-align: center; /* Alinhamento do texto ao centro */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Melhoria na estilização do container da visualização */
+.view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Altura mínima para centralização vertical */
+}
+
+/* Estilos para a card */
+.card {
+    border: none; /* Remove a borda padrão */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    overflow: hidden; /* Esconde overflow do card */
+}
+
+.card-body {
+    padding: 20px; /* Espaçamento interno do corpo do card */
+}
+
+/* Estilos para o botão Voltar */
+.btn-primary {
+    background-color: #9466ff; /* Cor do fundo do botão */
+    border-color: #9466ff; /* Cor da borda do botão */
+}
+
+.btn-primary:hover {
+    background-color: #121224;
+    border: #9466ff;
+}

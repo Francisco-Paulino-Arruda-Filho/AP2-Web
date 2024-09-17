@@ -1,0 +1,60 @@
+nav {
+    background-color: #121224;
+    color: white;
+    padding: 10px;
+    border-bottom: 1px solid #242424;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.dropdown, #dropdownMenuButton {
+    background-color: #9466ff;
+    border-radius: 10px;
+}
+
+#dropdownMenuButton:hover {
+    background-color: #121214;
+}
+
+nav .logo {
+    font-size: 15px; /* Diminui o tamanho da fonte */
+    background-color: #121214;
+    border: 1px solid #9466ff;
+    color: #fff;
+    text-align: center;
+    border-radius: 50px; /* Mantém o formato arredondado, ajustado para o novo tamanho */
+    transition: background-color 0.3s ease;
+}
+
+nav .logo:hover {
+    background-color: #9466ff;
+    color: #fff;
+    border-radius: 100px; /* Ajuste para manter o formato ao passar o mouse */
+}
+
+
+nav .dropdown-menu {
+    background-color: #121224; /* Mantém o estilo escuro */
+    border-color: #9466ff;
+}
+
+nav .dropdown-item {
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+nav .dropdown-item.active,
+nav .dropdown-item:hover {
+    background-color: #9466ff;
+    color: #fff;
+}
+
+nav .active {
+    background-color: #9466ff;
+    padding: 12px 23px;
+    border: 1px solid #121224;
+    color: #fff;
+    border-radius: 100px;
+}

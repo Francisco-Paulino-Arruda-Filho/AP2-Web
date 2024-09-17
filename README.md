@@ -1,50 +1,68 @@
-# React + TypeScript + Vite
+# CRUD de Alunos - Segunda Prova
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto implementa uma aplicação CRUD (Create, Read, Update, Delete) para gerenciar informações sobre alunos, desenvolvido como parte da segunda prova de Engenharia de Software. A aplicação é construída utilizando **React** no front-end e **Express** no back-end, com uma base de dados em **MongoDB**, **memória**, ou **Firebase Firestore**.
 
-Currently, two official plugins are available:
+## Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Front-End**: Vite + React + Bootstrap + TS
+- **Back-End**: Node.js com Express
+- **Banco de Dados**: MongoDB
 
-## Expanding the ESLint configuration
+## Funcionalidades
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+A aplicação permite realizar as seguintes operações sobre a entidade "ALUNO":
 
-- Configure the top-level `parserOptions` property like this:
+- **Listar Alunos**: Exibe uma lista de alunos cadastrados, mostrando seus nomes, cursos e IRA.
+- **Criar Aluno**: Formulário para adicionar um novo aluno ao sistema.
+- **Editar Aluno**: Possibilidade de editar os dados de um aluno existente.
+- **Recuperar Aluno**: Exibe detalhes específicos de um aluno com base em seu ID.
+- **Apagar Aluno**: Remove um aluno da base de dados.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Estrutura da Entidade "ALUNO"
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Cada aluno possui os seguintes atributos:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- **nome** (string): Nome completo do aluno.
+- **curso** (string): Curso em que o aluno está matriculado.
+- **IRA** (number): Índice de Rendimento Acadêmico.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Como Rodar o Projeto
+
+### Pré-requisitos
+
+- Node.js instalado
+- MongoDB, Firestore ou configuração de base de dados em memória
+
+### Instruções
+
+1. Clone o repositório:
+
+    ```bash
+    git clone https://github.com/seu-usuario/projeto-crud-alunos.git
+    ```
+
+2. Instale as dependências:
+
+    ```bash
+    cd projeto-crud-alunos
+    npm install
+    ```
+
+3. Configure o banco de dados (MongoDB) no arquivo `.env`.
+
+4. Rode a aplicação:
+
+    ```bash
+    npm run dev
+    ```
+5. Acesse a aplicação em `http://localhost:5173`.
+
+## Menu de Navegação
+
+A aplicação contém um menu dropdown que facilita o acesso às operações de CRUD:
+
+- **Listar Alunos**
+- **Criar Aluno**
+- **Editar Aluno**
+- **Recuperar Aluno**
+- **Apagar Aluno**
