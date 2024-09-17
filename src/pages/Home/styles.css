@@ -7,6 +7,14 @@
     width: 100%;
 }
 
+.high-ira {
+    background-color: blue !important; /* Cor verde clara */
+}
+
+.flow-ira {
+    background-color: red !important; /* Cor verde escura */
+}
+
 .styled-table thead th {
     /* Use th ao invés de td */
     background-color: #9466ff;
