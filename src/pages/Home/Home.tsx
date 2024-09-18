@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import app from '../../config/Firebase';
-import { toast } from 'react-toastify';
+import { useEffect, useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.bundle.min"; // Certifique-se de importar o JS do Bootstrap
 import './styles.css';
@@ -48,7 +46,7 @@ const Home = () => {
 
     return (
         <div className='container mt-5'>
-            <h2 className="mb-4">Lista de Contatos</h2>
+            <h2 className="mb-4">Lista de alunos</h2>
             <table className="table table-striped table-bordered table-hover styled-table">
                 <thead>
                     <tr>

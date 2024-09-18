@@ -6,6 +6,7 @@ import './styles.css';
 import { useParams, useNavigate } from 'react-router-dom'
 
 interface Aluno {
+    _id: string,
     nome: string;
     curso: string;
     ira: number;
@@ -15,6 +16,7 @@ const AddEdit = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const initialState = {
+        _id: "",
         nome: "",
         curso: "",
         ira: 7.0,
@@ -24,7 +26,7 @@ const AddEdit = () => {
     const { nome, curso, ira } = state;
 
     useEffect(() => {
-        fetch(`http://localhost:3000/aluno/${id ? id : ""}`)
+        fetch(`http://localhost:3000/aluno/find/${id}`)
             .then((response) => {
                 return response.json();
             })
@@ -32,24 +34,15 @@ const AddEdit = () => {
                 if (!data) {
                     return;
                 }
-                setData(data);
+                console.log('data', data)
+                setData(data)
+                setState(data)
             })
             .catch((err) => {
                 toast.error("Erro ao carregar os dados");
                 console.error(err);
             });
     }, [id]);
-
-    useEffect(() => {
-        if (id) {
-            setState(data[id] || initialState); // Adiciona uma verificação para garantir que state seja um objeto válido
-        } else {
-            setState(initialState);
-        }
-        return () => {
-            setState(initialState);
-        }
-    }, [id, data]);
 
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,11 +51,15 @@ const AddEdit = () => {
             ...state,
             [name]: value
         })
+        console.log(state)
     }
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        fetch(`http://localhost:3000/aluno/` + (id || ""), {
+        console.log(id)
+        console.log(JSON.stringify(state))
+        const endPoint = id ? '/find/' + id : '/'
+        fetch(`http://localhost:3000/aluno${endPoint}` , {
             method: id ? "PUT" : "POST",
             headers: {
                 'Content-Type': 'application/json' // Adiciona o cabeçalho correto
@@ -77,10 +74,10 @@ const AddEdit = () => {
                 toast.error("Erro ao salvar os dados");
             }
         })
-            .catch((err) => {
-                toast.error("Erro ao salvar os dados");
-                console.error(err);
-            });
+        .catch((err) => {
+            toast.error("Erro ao salvar os dados");
+            console.error(err);
+        });
     };
 
 
@@ -94,7 +91,7 @@ const AddEdit = () => {
                             type='text'
                             id='nome'
                             name='nome'
-                            value={nome}
+                            value={state.nome}
                             onChange={handleInputChange}
                             placeholder='Nome'
                             className="form-control form-control-lg w-100"
@@ -106,7 +103,7 @@ const AddEdit = () => {
                             type='text'
                             id='curso'
                             name='curso'
-                            value={curso}
+                            value={state.curso}
                             onChange={handleInputChange}
                             placeholder='Curso'
                             className="form-control form-control-lg w-100"
@@ -118,7 +115,7 @@ const AddEdit = () => {
                             type='number'
                             id='ira'
                             name='ira'
-                            value={ira}
+                            value={state.ira}
                             onChange={handleInputChange}
                             placeholder='IRA'
                             className="form-control form-control-lg w-100"

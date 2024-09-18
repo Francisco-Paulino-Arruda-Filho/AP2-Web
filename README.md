@@ -47,15 +47,23 @@ Cada aluno possui os seguintes atributos:
     cd projeto-crud-alunos
     npm install
     ```
+3. Rode o docker
+    ```
+        docker compose up
+    ```
+4. Zere o docker
+    ```
+        docker compose down
+    ```
 
-3. Configure o banco de dados (MongoDB) no arquivo `.env`.
+5. Configure o banco de dados (MongoDB) no arquivo `.env`.
 
-4. Rode a aplicação:
+6. Rode a aplicação:
 
     ```bash
     npm run dev
     ```
-5. Acesse a aplicação em `http://localhost:5173`.
+7. Acesse a aplicação em `http://localhost:5173`.
 
 ## Menu de Navegação
 
@@ -64,5 +72,4 @@ A aplicação contém um menu dropdown que facilita o acesso às operações de 
 - **Listar Alunos**
 - **Criar Aluno**
 - **Editar Aluno**
-- **Recuperar Aluno**
 - **Apagar Aluno**

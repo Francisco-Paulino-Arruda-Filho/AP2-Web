@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 interface Aluno {
     nome: string;
@@ -23,7 +22,7 @@ const Courses = () => {
 
 
     return (<>
-        <h2 className="mb-4">Lista de Contatos</h2>
+        <h2 className="mb-4">Lista de alunos</h2>
         {Object.entries(data).map(([curso, alunos]) => {
             return <>
                 <h3>{curso}</h3>
@@ -35,7 +34,6 @@ const Courses = () => {
                         <tr>
                             <th>Nome</th>
                             <th>IRA</th>
-                            <th>Ação</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,24 +45,6 @@ const Courses = () => {
                                 }}>
                                     <td>{aluno?.nome || "Sem nome"}</td>
                                     <td>{aluno?.ira || "Sem IRA"}</td>
-                                    <td>
-                                        <button
-                                            className="btn btn-danger"
-                                            onClick={() => onDelete(aluno._id)}
-                                        >
-                                            Deletar
-                                        </button>
-                                        <Link to={`/update/${aluno._id}`}>
-                                            <button className='btn btn-success'>
-                                                Editar
-                                            </button>
-                                        </Link>
-                                        <Link to={`/view/${aluno._id}`}>
-                                            <button className='btn btn-info'>
-                                                Visualizar
-                                            </button>
-                                        </Link>
-                                    </td>
                                 </tr>
                             );
                         }
