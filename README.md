@@ -38,13 +38,13 @@ Cada aluno possui os seguintes atributos:
 1. Clone o repositório:
 
     ```bash
-    git clone https://github.com/seu-usuario/projeto-crud-alunos.git
+    git clone https://github.com/Francisco-Paulino-Arruda-Filho/AP2-Web
     ```
 
 2. Instale as dependências:
 
     ```bash
-    cd projeto-crud-alunos
+    cd AP2-Web
     npm install
     ```
 3. Rode o docker
