@@ -1,0 +1,31 @@
+.styled-table {
+    margin: 0 auto;
+    font-size: 0.9em;
+    border-collapse: collapse;
+    font-family: sans-serif;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width: 100%;
+}
+
+.high-ira {
+    background-color: blue !important; /* Cor verde clara */
+}
+
+.flow-ira {
+    background-color: red !important; /* Cor verde escura */
+}
+
+.styled-table thead th {
+    /* Use th ao invés de td */
+    background-color: #9466ff;
+    text-align: left;
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #9466ff;
+}
+
+.styled-table tbody td {
+    padding: 12px 15px;
+}

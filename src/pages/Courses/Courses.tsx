@@ -7,6 +7,7 @@ interface Aluno {
 }
 
 const Courses = () => {
+    const [destaca, setDestaca] = useState(false)
 
     const [data, setData] = useState<{ [key: string]: Aluno[] }>({});
     useEffect(() => {
@@ -14,7 +15,6 @@ const Courses = () => {
             then(response => { console.log(response); return response.json() }).
             then(data => {
                 const byCourse = groupBy(data, "curso")
-                console.log(byCourse)
                 setData(byCourse)
             }
             ).catch((error) => { console.error(error) })
@@ -27,7 +27,7 @@ const Courses = () => {
             return <>
                 <h3>{curso}</h3>
 
-                <table className="table" style={{
+                <table className="table styled-table" style={{
                     padding: "5px 10px"
                 }}>
                     <thead >
@@ -39,21 +39,29 @@ const Courses = () => {
                     <tbody>
                         {alunos.map((aluno) => {
                             return (
-                                <tr key={aluno._id} style={{
-                                    borderWidth: "5px",
-                                    borderColor: aluno.ira >= 7 ? "blue" : "red"
-                                }}>
-                                    <td>{aluno?.nome || "Sem nome"}</td>
-                                    <td>{aluno?.ira || "Sem IRA"}</td>
+                                <tr key={aluno._id}>
+                                    <td
+                                        className={destaca ? Number(aluno.ira) >= 7 ? "high-ira" : "flow-ira" : "" }
+                                    >{aluno?.nome || "Sem nome"}</td>
+                                    <td
+                                        className={destaca ? Number(aluno.ira) >= 7 ? "high-ira" : "flow-ira" : "" }
+                                    >{aluno?.ira || "Sem IRA"}</td>
                                 </tr>
                             );
                         }
                         )}
                     </tbody>
                 </table>
-
             </>
         })}
+        <button className='btn' onClick={() => setDestaca(!destaca)}
+            style={{
+                backgroundColor: '#9466ff',
+                color: '#fff'
+            }}
+        >
+            Destacar
+        </button>
     </>);
 }
 

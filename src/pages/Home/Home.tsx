@@ -15,12 +15,12 @@ interface Aluno {
 // O estado agora usa um objeto cujas chaves são strings (os IDs)
 const Home = () => {
     const [data, setData] = useState<Aluno[]>([]);
+    const [destaca, setDestaca] = useState(false)
 
     useEffect(() => {
         fetch('http://localhost:3000/aluno', { method: "GET" }).
             then(response => { console.log(response); return response.json() }).
             then(data => {
-                console.log(data)
                 setData(data)
             }
             ).catch((error) => { console.error(error) })
@@ -58,21 +58,20 @@ const Home = () => {
                 </thead>
                 <tbody>
                     {data.map((aluno) => {
-                        console.log(aluno)
                         return (
                             <tr key={aluno._id}
                             >
                                 <td
-                                    className={Number(aluno.ira) >= 7 ? "high-ira" : "flow-ira"}
+                                    className={destaca ? Number(aluno.ira) >= 7 ? "high-ira" : "flow-ira" : "" }
                                 >{aluno?.nome || "Sem nome"}</td>
                                 <td
-                                    className={Number(aluno.ira) >= 7 ? "high-ira" : "flow-ira"}
+                                    className={destaca ? Number(aluno.ira) >= 7 ? "high-ira" : "flow-ira" : "" }
                                 >{aluno?.curso || "Sem curso"}</td>
                                 <td
-                                    className={Number(aluno.ira) >= 7 ? "high-ira" : "flow-ira"}
+                                    className={destaca ? Number(aluno.ira) >= 7 ? "high-ira" : "flow-ira" : "" }
                                 >{aluno?.ira || "Sem IRA"}</td>
                                 <td
-                                    className={Number(aluno.ira) >= 7 ? "high-ira" : "flow-ira"}
+                                    className={destaca ? Number(aluno.ira) >= 7 ? "high-ira" : "flow-ira" : "" }
                                 >
                                     <button
                                         className="btn btn-danger"
@@ -100,6 +99,14 @@ const Home = () => {
                     </tr>
                 </tbody>
             </table>
+            <button className='btn' onClick={() => setDestaca(!destaca)}
+                style={{
+                    backgroundColor: '#9466ff',
+                    color: '#fff'
+                }}
+            >
+                Destacar
+            </button>
         </div>
     );
 };

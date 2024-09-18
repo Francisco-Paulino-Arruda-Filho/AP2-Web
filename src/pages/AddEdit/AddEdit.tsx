@@ -51,13 +51,10 @@ const AddEdit = () => {
             ...state,
             [name]: value
         })
-        console.log(state)
     }
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(id)
-        console.log(JSON.stringify(state))
         const endPoint = id ? '/find/' + id : '/'
         fetch(`http://localhost:3000/aluno${endPoint}` , {
             method: id ? "PUT" : "POST",
@@ -66,7 +63,6 @@ const AddEdit = () => {
             },
             body: JSON.stringify(state) // Certifica-se de enviar o corpo como JSON
         }).then((response) => {
-            console.log(response);
             if (response.ok) {
                 toast.success(`Aluno ${id ? "atualizado" : "adicionado"} com sucesso`);
                 navigate('/');
