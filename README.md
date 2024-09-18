@@ -60,14 +60,12 @@ OBS: Se quiser deletar as imagens
         docker compose down --msi local
     ```
 
-5. Configure o banco de dados (MongoDB) no arquivo `.env`.
-
-6. Rode a aplicação:
+5. Rode a aplicação:
 
     ```bash
     npm run dev
     ```
-7. Acesse a aplicação em `http://localhost:5173`.
+6. Acesse a aplicação em `http://localhost:5173`.
 
 ## Menu de Navegação
 
