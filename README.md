@@ -55,6 +55,10 @@ Cada aluno possui os seguintes atributos:
     ```
         docker compose down
     ```
+OBS: Se quiser deletar as imagens
+    ```
+        docker compose down --msi
+    ```
 
 5. Configure o banco de dados (MongoDB) no arquivo `.env`.
 
